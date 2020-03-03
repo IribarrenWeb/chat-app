@@ -7,7 +7,11 @@
           </div>
 
           <form class="login100-form validate-form">
-            <span class="login100-form-title">ChatApp Login</span>
+            
+            <div class="login100-form-title">
+                <img class="p-2 rounded-circle shadow-sm bg-light" src="uploads/chatapp.png" width="100" alt="brand">
+                <span class="d-block mt-1">Login</span>
+            </div>
 
             <div
               class="wrap-input100 validate-input"
@@ -21,7 +25,7 @@
             </div>
 
             <div class="wrap-input100 validate-input" data-validate="Password is required">
-                <input class="input100" @focus="hideValidate" type="password" v-model="data.password" name="password" placeholder="Password" />
+                <input class="input100" @focus="hideValidate" type="password" v-model="data.password" name="password" placeholder="Contraseña" />
                 <span class="focus-input100"></span>
                 <span class="symbol-input100">
                 <i class="fa fa-lock" aria-hidden="true"></i>

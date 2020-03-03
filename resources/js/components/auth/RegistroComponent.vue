@@ -7,12 +7,13 @@
             </div>
 
             <form class="login100-form validate-form" data-option="registro">
-                <span class="login100-form-title">
-                    ChatApp Registro
-                </span>
+                <div class="login100-form-title">
+                    <img class="p-2 rounded-circle shadow-sm  bg-light" src="uploads/chatapp.png" width="100" alt="brand">
+                    <span class="d-block mt-1">Registro</span>
+                </div>
 
                 <div class="wrap-input100 validate-input" data-validate = "Valid user is required">
-                    <input @focus="hideValidate" @input="hideValidate" class="input100" type="text" v-model="data.name" name="name" placeholder="Usuario">
+                    <input @focus="hideValidate" @input="hideValidate" class="input100" type="text" v-model="data.name" name="name" placeholder="Nombre completo">
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
                         <i class="fa fa-user-circle" aria-hidden="true"></i>
@@ -28,7 +29,7 @@
                 </div>
 
                 <div class="wrap-input100 validate-input" data-validate = "Valid number is required: 04241234567">
-                    <input @focus="hideValidate" @input="hideValidate" class="input100" type="number" v-model="data.phone"  min="8" name="phone" placeholder="Phone number">
+                    <input @focus="hideValidate" @input="hideValidate" class="input100" type="number" v-model="data.phone"  min="8" name="phone" placeholder="Numero de telefono">
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
                         <i class="fa fa-phone" aria-hidden="true"></i>
@@ -36,7 +37,7 @@
                 </div>
 
                 <div class="wrap-input100 validate-input" data-validate = "Password is required">
-                    <input @focus="hideValidate" @input="hideValidate" class="input100" type="password" v-model="data.password" name="password" placeholder="Password">
+                    <input @focus="hideValidate" @input="hideValidate" class="input100" type="password" v-model="data.password" name="password" placeholder="Contraseña">
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
                         <i class="fa fa-lock" aria-hidden="true"></i>
@@ -44,7 +45,7 @@
                 </div>
                 
                 <div class="wrap-input100 validate-input" data-validate = "Confirm password is required">
-                    <input @focus="hideValidate" @input="hideValidate" class="input100" type="password" v-model="data.password_confir" name="password_confirmation" placeholder="Confirm password">
+                    <input @focus="hideValidate" @input="hideValidate" class="input100" type="password" v-model="data.password_confir" name="password_confirmation" placeholder="Confirma la contraseña">
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
                         <i class="fa fa-lock" aria-hidden="true"></i>
@@ -59,7 +60,7 @@
                     </button>
                 </div>
 
-                <div class="text-center p-t-136">
+                <div class="text-center p-t-20">
                     <a class="txt2" href="/">
                         Iniciar sesion
                         <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>

@@ -5,7 +5,7 @@
                 <img :src="contact.profile_img" class="rounded-circle avatar avatar-head" width="60" alt="">
             </div>
             <div class="info-contact ml-3">
-                <p class="h5" :class="{'font-weight-light': !contact}">{{contact ? contact.name : 'Select a contact'}}</p>
+                <p class="h5" :class="{'font-weight-light': !contact}">{{contact ? contact.name : 'Selecciona un contacto'}}</p>
                 <p v-if="contact">{{contact.phone_number}}</p>
             </div>
         </div>

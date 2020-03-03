@@ -12,3 +12,6 @@ npm-debug.log
 yarn-error.log
 laravel.rar
 public.rar
+public/css/main.min.css
+public/css/util.min.css
+public/js/main.min.js

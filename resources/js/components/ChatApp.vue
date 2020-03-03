@@ -56,7 +56,8 @@
             Conversation,
             ContactList,
             NavigationMenu,
-            ConfigUser
+            ConfigUser,
+            VTitle
         },
         methods: {
             async startChat(contact){

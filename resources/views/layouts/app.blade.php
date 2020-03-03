@@ -16,10 +16,13 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="./chatapp.ico">
+
     @guest
         {{-- Login CSS --}}
-        <link rel="stylesheet" type="text/css" href="{{ asset('css/util.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/util.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/main.min.css') }}">
     @endguest
 
 </head>

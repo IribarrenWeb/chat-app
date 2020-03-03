@@ -5,7 +5,7 @@
                 <div class="nav nav-tab menu">
                     <a href="#" @click="changeEvent()" data-toggle="tab" title="User Setting">
                         <i class="fas fa-sliders-h"></i>
-                        Setting
+                        Configuracion
                     </a>
                     <!-- <a href="#members" data-toggle="tab" title="All members">
                         <i class="fas fa-home"></i>
@@ -17,7 +17,7 @@
                     </a> -->
                     <a :href="`${this.url}/logout`" class="btn power border-0" title="Sign Out">
                         <i class="fas fa-power-off"></i>
-                        Logout
+                        Salir
                     </a>
                 </div>
             </div>

@@ -1994,7 +1994,8 @@ __webpack_require__.r(__webpack_exports__);
     Conversation: _Conversation__WEBPACK_IMPORTED_MODULE_1__["default"],
     ContactList: _ContactList__WEBPACK_IMPORTED_MODULE_2__["default"],
     NavigationMenu: _NavigationMenu__WEBPACK_IMPORTED_MODULE_3__["default"],
-    ConfigUser: _ConfigUser__WEBPACK_IMPORTED_MODULE_4__["default"]
+    ConfigUser: _ConfigUser__WEBPACK_IMPORTED_MODULE_4__["default"],
+    VTitle: v_title__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
   methods: {
     startChat: function startChat(contact) {
@@ -2573,7 +2574,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     messages: {
@@ -2895,6 +2895,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2979,6 +2983,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -51615,7 +51620,7 @@ var render = function() {
                       ],
                       staticClass: "btn btn-primary btn-sm"
                     },
-                    [_vm._v("Upload image")]
+                    [_vm._v("Sube una imagen")]
                   )
                 ]),
                 _vm._v(" "),
@@ -51672,7 +51677,7 @@ var render = function() {
               _vm._v(" "),
               _c("p", [
                 _vm._v(
-                  "For best results, use an image at least 200px by 200px in .jpg or .png format!"
+                  "Para mejor resultado, usa una imagen de al menos 200px por 200px en formato .jpg o .png!"
                 )
               ])
             ]),
@@ -51698,7 +51703,7 @@ var render = function() {
                             },
                             [
                               _c("span", { staticClass: "sr-only" }, [
-                                _vm._v("Loading...")
+                                _vm._v("Cargando...")
                               ])
                             ]
                           )
@@ -51774,7 +51779,7 @@ var render = function() {
                   { staticClass: "field", attrs: { "data-validate": "" } },
                   [
                     _c("label", { attrs: { for: "location" } }, [
-                      _vm._v("Phone Number")
+                      _vm._v("Numero de telefono")
                     ]),
                     _vm._v(" "),
                     _c("input", {
@@ -51802,25 +51807,33 @@ var render = function() {
                   ]
                 ),
                 _vm._v(" "),
-                _c("div", { staticClass: "buttons mt-3" }, [
+                _c("div", { staticClass: "buttons mt-3 d-flex" }, [
                   _c(
                     "button",
                     {
-                      staticClass: "btn btn-primary btn-sm w-25",
+                      staticClass: "btn btn-primary btn-sm w-50 mr-1",
                       class: { disabled: !_vm.isChanged },
                       attrs: { disabled: _vm.isLoadingUpdate },
                       on: { click: _vm.update }
                     },
-                    [_vm._v("Apply")]
+                    [_vm._v("Guardar")]
                   ),
                   _vm._v(" "),
                   _c(
                     "button",
                     {
-                      staticClass: "btn btn-danger btn-sm w-50 disabled",
-                      attrs: { disabled: "true" }
+                      directives: [
+                        {
+                          name: "title",
+                          rawName: "v-title",
+                          value: "Aun no disponible",
+                          expression: "'Aun no disponible'"
+                        }
+                      ],
+                      staticClass: "btn btn-danger btn-sm w-50 disabled ml-1",
+                      attrs: { disabled: "true", "title-placement": "top" }
                     },
-                    [_vm._v("Delete Account")]
+                    [_vm._v("Borrar cuenta")]
                   )
                 ])
               ],
@@ -51840,10 +51853,10 @@ var staticRenderFns = [
     return _c("div", { staticClass: "data" }, [
       _c("h5", { staticClass: "font-weight-bold text-black" }, [
         _c("i", { staticClass: "fa fa-user mr-1" }),
-        _vm._v(" My Account")
+        _vm._v(" Mi cuenta")
       ]),
       _vm._v(" "),
-      _c("p", [_vm._v("Update your profile details")])
+      _c("p", [_vm._v("Actualiza los detalles de tu perfil")])
     ])
   },
   function() {
@@ -51851,7 +51864,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("label", { attrs: { for: "firstName" } }, [
-      _vm._v("First name "),
+      _vm._v("Nombre completo "),
       _c("span", [_vm._v("*")])
     ])
   },
@@ -51946,7 +51959,7 @@ var render = function() {
             attrs: {
               type: "search",
               id: "conversations",
-              placeholder: "Search for conversations..."
+              placeholder: "Busca algun contacto..."
             },
             domProps: { value: _vm.filterText },
             on: {
@@ -52078,7 +52091,9 @@ var render = function() {
             { staticClass: "h5", class: { "font-weight-light": !_vm.contact } },
             [
               _vm._v(
-                _vm._s(_vm.contact ? _vm.contact.name : "Select a contact")
+                _vm._s(
+                  _vm.contact ? _vm.contact.name : "Selecciona un contacto"
+                )
               )
             ]
           ),
@@ -52185,14 +52200,19 @@ var render = function() {
                 [
                   message.ifLast
                     ? _c("img", {
+                        directives: [
+                          {
+                            name: "title",
+                            rawName: "v-title",
+                            value: message.from_contact.name,
+                            expression: "message.from_contact.name"
+                          }
+                        ],
                         staticClass: "avatar avatar-feed mr-2",
                         attrs: {
                           src: message.from_contact.profile_img,
-                          "data-toggle": "tooltip",
-                          "data-placement": "top",
-                          title: "",
-                          alt: "avatar",
-                          "data-original-title": "Karen joye"
+                          "title-placement": "top",
+                          alt: "avatar"
                         }
                       })
                     : _vm._e(),
@@ -52311,7 +52331,7 @@ var render = function() {
               },
               [
                 _c("i", { staticClass: "fas fa-sliders-h" }),
-                _vm._v("\n                    Setting\n                ")
+                _vm._v("\n                    Configuracion\n                ")
               ]
             ),
             _vm._v(" "),
@@ -52323,7 +52343,7 @@ var render = function() {
               },
               [
                 _c("i", { staticClass: "fas fa-power-off" }),
-                _vm._v("\n                    Logout\n                ")
+                _vm._v("\n                    Salir\n                ")
               ]
             )
           ])
@@ -52417,9 +52437,7 @@ var render = function() {
         _vm._m(0),
         _vm._v(" "),
         _c("form", { staticClass: "login100-form validate-form" }, [
-          _c("span", { staticClass: "login100-form-title" }, [
-            _vm._v("ChatApp Login")
-          ]),
+          _vm._m(1),
           _vm._v(" "),
           _c(
             "div",
@@ -52453,7 +52471,7 @@ var render = function() {
               _vm._v(" "),
               _c("span", { staticClass: "focus-input100" }),
               _vm._v(" "),
-              _vm._m(1)
+              _vm._m(2)
             ]
           ),
           _vm._v(" "),
@@ -52477,7 +52495,7 @@ var render = function() {
                 attrs: {
                   type: "password",
                   name: "password",
-                  placeholder: "Password"
+                  placeholder: "Contraseña"
                 },
                 domProps: { value: _vm.data.password },
                 on: {
@@ -52493,7 +52511,7 @@ var render = function() {
               _vm._v(" "),
               _c("span", { staticClass: "focus-input100" }),
               _vm._v(" "),
-              _vm._m(2)
+              _vm._m(3)
             ]
           ),
           _vm._v(" "),
@@ -52522,7 +52540,7 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _vm._m(3)
+          _vm._m(4)
         ])
       ])
     ])
@@ -52538,6 +52556,19 @@ var staticRenderFns = [
       { staticClass: "login100-pic js-tilt", attrs: { "data-tilt": "" } },
       [_c("img", { attrs: { src: "uploads/img-01.png", alt: "IMG" } })]
     )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "login100-form-title" }, [
+      _c("img", {
+        staticClass: "p-2 rounded-circle shadow-sm bg-light",
+        attrs: { src: "uploads/chatapp.png", width: "100", alt: "brand" }
+      }),
+      _vm._v(" "),
+      _c("span", { staticClass: "d-block mt-1" }, [_vm._v("Login")])
+    ])
   },
   function() {
     var _vm = this
@@ -52606,9 +52637,7 @@ var render = function() {
             attrs: { "data-option": "registro" }
           },
           [
-            _c("span", { staticClass: "login100-form-title" }, [
-              _vm._v("\n                    ChatApp Registro\n                ")
-            ]),
+            _vm._m(1),
             _vm._v(" "),
             _c(
               "div",
@@ -52627,7 +52656,11 @@ var render = function() {
                     }
                   ],
                   staticClass: "input100",
-                  attrs: { type: "text", name: "name", placeholder: "Usuario" },
+                  attrs: {
+                    type: "text",
+                    name: "name",
+                    placeholder: "Nombre completo"
+                  },
                   domProps: { value: _vm.data.name },
                   on: {
                     focus: _vm.hideValidate,
@@ -52645,7 +52678,7 @@ var render = function() {
                 _vm._v(" "),
                 _c("span", { staticClass: "focus-input100" }),
                 _vm._v(" "),
-                _vm._m(1)
+                _vm._m(2)
               ]
             ),
             _vm._v(" "),
@@ -52686,7 +52719,7 @@ var render = function() {
                 _vm._v(" "),
                 _c("span", { staticClass: "focus-input100" }),
                 _vm._v(" "),
-                _vm._m(2)
+                _vm._m(3)
               ]
             ),
             _vm._v(" "),
@@ -52713,7 +52746,7 @@ var render = function() {
                     type: "number",
                     min: "8",
                     name: "phone",
-                    placeholder: "Phone number"
+                    placeholder: "Numero de telefono"
                   },
                   domProps: { value: _vm.data.phone },
                   on: {
@@ -52732,7 +52765,7 @@ var render = function() {
                 _vm._v(" "),
                 _c("span", { staticClass: "focus-input100" }),
                 _vm._v(" "),
-                _vm._m(3)
+                _vm._m(4)
               ]
             ),
             _vm._v(" "),
@@ -52756,7 +52789,7 @@ var render = function() {
                   attrs: {
                     type: "password",
                     name: "password",
-                    placeholder: "Password"
+                    placeholder: "Contraseña"
                   },
                   domProps: { value: _vm.data.password },
                   on: {
@@ -52775,7 +52808,7 @@ var render = function() {
                 _vm._v(" "),
                 _c("span", { staticClass: "focus-input100" }),
                 _vm._v(" "),
-                _vm._m(4)
+                _vm._m(5)
               ]
             ),
             _vm._v(" "),
@@ -52799,7 +52832,7 @@ var render = function() {
                   attrs: {
                     type: "password",
                     name: "password_confirmation",
-                    placeholder: "Confirm password"
+                    placeholder: "Confirma la contraseña"
                   },
                   domProps: { value: _vm.data.password_confir },
                   on: {
@@ -52822,7 +52855,7 @@ var render = function() {
                 _vm._v(" "),
                 _c("span", { staticClass: "focus-input100" }),
                 _vm._v(" "),
-                _vm._m(5)
+                _vm._m(6)
               ]
             ),
             _vm._v(" "),
@@ -52851,7 +52884,7 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
-            _vm._m(6)
+            _vm._m(7)
           ]
         )
       ])
@@ -52873,6 +52906,19 @@ var staticRenderFns = [
         })
       ]
     )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "login100-form-title" }, [
+      _c("img", {
+        staticClass: "p-2 rounded-circle shadow-sm  bg-light",
+        attrs: { src: "uploads/chatapp.png", width: "100", alt: "brand" }
+      }),
+      _vm._v(" "),
+      _c("span", { staticClass: "d-block mt-1" }, [_vm._v("Registro")])
+    ])
   },
   function() {
     var _vm = this
@@ -52924,7 +52970,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "text-center p-t-136" }, [
+    return _c("div", { staticClass: "text-center p-t-20" }, [
       _c("a", { staticClass: "txt2", attrs: { href: "/" } }, [
         _vm._v(
           "\n                        Iniciar sesion\n                        "

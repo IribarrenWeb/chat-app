@@ -17,10 +17,9 @@
             <div class="message position-relative" :class="{'send': message.to == contact.id,'mb-0':!message.hour}">
 
                 <img v-if="message.ifLast" class="avatar avatar-feed mr-2" :src="message.from_contact.profile_img" 
-                    data-toggle="tooltip" 
-                    data-placement="top" 
-                    title="" alt="avatar" 
-                    data-original-title="Karen joye">
+                    title-placement="top" 
+                    alt="avatar" 
+                    v-title="message.from_contact.name">
 
                 <div class="text-main" :class="{'spaceImage': !message.ifLast}" title-placement="right" v-title="formatTime(message.created_at,true) + ' ' +  formatTime(message.created_at)" >
                     <div class="text-group" :class="{'send': message.to == contact.id}">

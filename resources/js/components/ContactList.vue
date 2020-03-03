@@ -17,7 +17,7 @@
 
         <div class="search">
             <div class="form-inline position-relative">
-                <input type="search" v-model="filterText" class="form-control" id="conversations" placeholder="Search for conversations...">
+                <input type="search" v-model="filterText" class="form-control" id="conversations" placeholder="Busca algun contacto...">
                 <button type="button" class="btn btn-link loop"><i class="fa fa-search"></i></button>
             </div>
             <button class="btn create" data-toggle="modal" data-target="#startnewchat"><i class="ti-pencil"></i></button>
