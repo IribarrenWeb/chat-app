@@ -1,11 +1,11 @@
-<p align="center"><img src="./imagenes/CHAT APP.png" width="400"></p>
+<p align="center"><img src="./imagenes/CHAT APP.png" width="300"></p>
 
 <p align="center">Chatapp with LARAVEL and VUEJS</p>
 
 <p align="center">
-<img src="./imagenes/1.jpg" width="300">
-<img src="./imagenes/2.jpg" width="300">
-<img src="./imagenes/3.jpg" width="300">
+<img src="./imagenes/1.jpg" width="200">
+<img src="./imagenes/2.jpg" width="200">
+<img src="./imagenes/3.jpg" width="200">
 </p>
 
 ## About this project
@@ -20,14 +20,14 @@ I implemented many features to this project to make more comlex for learning pro
 - Laravel Echo implemented, with live events.
 - Messages can mark as read.
 - Configuration section for the user data.
-- Upload and change porfile images.
-- Shortable lis of users, with search box.
+- Upload and change profile images.
+- List of users, with search box.
 - Default images for new registered users.
 - Very metodic validations for sended data.
-- Very fresh desing.
+- Very fresh UI desing.
 - Feedback messages with alerts and notifications.
 - Loading feedback.
 - Notifications for recived messages.
-- Icon from FontAwesome.
+- Icons from FontAwesome implemented.
 
 
