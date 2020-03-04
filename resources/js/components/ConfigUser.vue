@@ -146,7 +146,7 @@ export default {
                     this.$vToastify.error("Error en la carga de la imagen.");
                 }
             })
-            .then(e => {
+            .catch(error => {
                 this.$vToastify.error("Error en el servidor.");
             })
         },
@@ -195,7 +195,7 @@ export default {
                         this.$vToastify.error("No se pudo actualizar. Error en los datos");
                     }
                 })
-                .then( e => {
+                .catch( error => {
                     this.$vToastify.error("Error en el servidor.");
                 })
             }
