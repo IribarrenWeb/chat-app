@@ -1,37 +1,77 @@
 <template>
-    <div class="feed p-1" id="feed-component" :class="{'overflow-hidden':isLoad}"  ref="feed">
-        <div v-if="!contact" class="h-100 w-100 prev">
-            <i class="fas fa-users"></i>
-            <h3 class="h5 w-50">Selecciona a un contacto para comenzar a chatear.</h3>
-        </div>
-        <div v-else-if="contact && messages.length == 0" class="h-100 w-100 prev">
-            <i class="far fa-comment-alt"></i>
-            <h3 class="h5 w-50">Parece que no has comenzado a chatear con este usuario, enviale un mensaje!</h3>
-        </div>
-        <div v-else class="px-1" v-for="message in checkMessage" :key="message.id">
-            <div class="date" v-if="message.date">
-                <hr>
-                    <span>{{formatTime(message.created_at,true)}}</span>
-                <hr>
+    <div class="feed p-1" id="feed-component" ref="feed">
+        <transition-group name="fade">
+            
+            <!-- Loader for message feed -->
+            <div v-if="!loadConver" key="load" class="d-flex bg-light-trans h-100 justify-content-center align-items-center">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
             </div>
-            <div class="message position-relative" :class="{'send': message.to == contact.id,'mb-0':!message.hour}">
 
-                <img v-if="message.ifLast" class="avatar avatar-feed mr-2" :src="message.from_contact.profile_img" 
-                    title-placement="top" 
-                    alt="avatar" 
-                    v-title="message.from_contact.name">
+            <!-- Message feed container -->
+            <div key="conver" class="h-100" v-if="loadConver">
 
-                <div class="text-main" :class="{'spaceImage': !message.ifLast}" title-placement="right" v-title="formatTime(message.created_at,true) + ' ' +  formatTime(message.created_at)" >
-                    <div class="text-group" :class="{'send': message.to == contact.id}">
-                        <div class="text" :class="{'send': message.to == contact.id}">{{message.message}}</div>
+                <!-- Conditional texts -->
+                <div v-if="!contact" class="h-100 w-100 prev">
+                    <i class="fas fa-users"></i>
+                    <h3 class="h5 w-50">Selecciona a un contacto para comenzar a chatear.</h3>
+                </div>
+                <div v-else-if="contact && messages.length == 0" class="h-100 w-100 prev">
+                    <i class="far fa-comment-alt"></i>
+                    <h3 class="h5 w-50">Parece que no has comenzado a chatear con este usuario, enviale un mensaje!</h3>
+                </div><!-- End Conditionals text -->
+
+                <!-- Message container -->
+                <div v-else class="px-1" v-for="message in checkMessage" :key="message.id">
+                    <!-- Message date if is set -->
+                    <div class="date" v-if="message.date">
+                        <hr>
+                            <span>{{formatTime(message.created_at,true)}}</span>
+                        <hr>
                     </div>
-                    <p v-if="message.hour" class="">{{formatTime(message.created_at)}}</p>
+                    <!-- Message div -->
+                    <div class="message position-relative" :class="{'send': message.to == contact.id,'mb-0':!message.hour}">
+
+                        <!-- Image only for message from contact -->
+                        <img v-if="message.ifLast" class="avatar avatar-feed mr-2" :src="message.from_contact.profile_img" 
+                            title-placement="top" 
+                            alt="avatar" 
+                            v-title="message.from_contact.name">
+
+                        <!-- Message text -->
+                        <div class="text-main" :class="{'spaceImage': !message.ifLast}" title-placement="right" v-title="formatTime(message.created_at,true) + ' ' +  formatTime(message.created_at)" >
+                            <div class="text-group" :class="{'send': message.to == contact.id}">
+                                <div class="text" :class="{'send': message.to == contact.id}">{{message.message}}</div>
+                            </div>
+                            <p v-if="message.hour" class="">{{formatTime(message.created_at)}}</p>
+                        </div>
+
+                        <!-- Message check -->
+                        <div class="position-absolute">
+                            <i v-if="message.ifCheck" class="fas" :class="message.ifCheck && message.read ? 'fa-check-double' : 'fa-check'"></i>
+                        </div>
+
+                    </div> <!-- End Message div -->
+
+                </div> <!-- End Message container -->
+                
+                <!-- Notify sended message -->
+                <div v-show="sendedMessage" class="message send">
+                    <!-- Message text -->
+                    <div class="text-main">
+                        <div class="text-group send">
+                            <div class="text send bg-primary text-white">
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                Enviando...
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="position-absolute">
-                    <i v-if="message.ifCheck" class="fas" :class="message.ifCheck && message.read ? 'fa-check-double' : 'fa-check'"></i>
-                </div>
-            </div>
-        </div>
+
+            </div> <!-- End Message feed container -->
+
+        </transition-group>
     </div>
 </template>
 
@@ -48,20 +88,20 @@ export default {
         },
         isRead: {
             type: Boolean,
+        },
+        loadConver: {
+            type: Boolean
+        },
+        sendedMessage: {
+            type: Boolean
         }
     },
     data() {
         return {
-            isLoad: {
-                type: Boolean
-            },
         }
     },
-    beforeMount(){
-        this.isLoad = true
-    },
     mounted() {
-        this.isLoad = false
+        this.$emit('isLoad',true);
     },
     methods: {
         scrollDown(){
@@ -70,19 +110,35 @@ export default {
             },50)
         },
         formatTime(date,option = false){
+            const month = new Array();
+            month[0] = "Ene";
+            month[1] = "Feb";
+            month[2] = "Mar";
+            month[3] = "Abril";
+            month[4] = "Mayo";
+            month[5] = "Jun";
+            month[6] = "Jul";
+            month[7] = "Ago";
+            month[8] = "Sep";
+            month[9] = "Oct";
+            month[10] = "Nov";
+            month[11] = "Dic";
 
             let d = new Date(date),
                 td = new Date(),
-                today = td.getDate() + '/' +  td.getMonth(),
-                fullDate = d.getDate() + '/' +  d.getMonth(),
+                tdYear = td.getFullYear(),
+                dYear = d.getFullYear(),
+                today = td.getDate() + ' ' +  month[td.getMonth()],
+                beforeDay = (td.getDate() - 1) + ' ' +  month[td.getMonth()],
+                fullDate = d.getDate() + ' ' +  month[d.getMonth()],
                 h=d.getHours(),m=d.getMinutes(),l="AM";
-            // console.log(d,date)
+
             if(option){
                 let result = fullDate;
 
-                if(today == fullDate){
+                if((today + ' ' + tdYear) == (fullDate + ' ' + dYear)){
                     result = 'Hoy';
-                }else if((today - 1) == fullDate){
+                }else if((beforeDay + ' ' + tdYear) == (fullDate + ' ' + dYear)){
                     result = 'Ayer';
                 }
                 return result;
@@ -108,16 +164,18 @@ export default {
         }
     },
     watch: {
-        messages(){
+        contact(){
             this.scrollDown();
         },
-        contact(){
- 
+        sendedMessage(){
+            console.log('scroll')
             this.scrollDown();
         }
     },
     computed: {
         checkMessage(){
+            this.scrollDown();
+
             for (let index = 0; index <= this.messages.length - 1; index++) {
                 
                 /** Init the variables to use it */
@@ -128,31 +186,21 @@ export default {
                     nextMessage = false
 
                 
-                if (this.messages[index + 1]) {
-                    nextMessage = this.messages[index + 1]
-                }else{
-                    if(this.messages.length >= 2){
-                       prevMessage = this.messages[index - 1];
+                if (this.messages.length >= 2) {
+                    if(typeof this.messages[index + 1] == 'undefined' && index >= 2){
+                        prevMessage = this.messages[index - 1];
+                    }else{
+                        prevMessage = this.messages[index - 1];
+                        nextMessage = this.messages[index + 1]
                     }
                 }
                 
                 /** Check the message date */
                 message.date = true
 
-                if(index >= 1){
-
-                    if (nextMessage) {
-                        compareMessage = nextMessage
-                    } else if(prevMessage) {
-                        compareMessage = prevMessage
-                    }else{
-                        compareMessage = false
-                    }
-
-                    // console.log(prevMessage)
-
-                    if (compareMessage) {
-                        if(this.formatTime(message.created_at,true) == this.formatTime(compareMessage.created_at,true)){
+                if(index > 0){
+                    if(prevMessage) {
+                        if(this.formatTime(message.created_at,true) == this.formatTime(prevMessage.created_at,true)){
                             message.date = false
                         }
                     }
@@ -164,7 +212,7 @@ export default {
                 
                     message.ifLast = true
 
-                    if (nextMessage.from == message.from) {
+                    if (nextMessage.from == message.from && nextMessage) {
                         message.ifLast = false
                     }
                 }

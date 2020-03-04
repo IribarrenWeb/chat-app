@@ -14,12 +14,12 @@ export default {
         }
     },
     methods: {
-        sendMessage(message){
-            if(message == ''){
+        sendMessage(text){
+            if(text == ''){
                 return
             }
             
-            this.$emit('send',message)
+            this.$emit('send',text)
             this.text = ''
         }
     }

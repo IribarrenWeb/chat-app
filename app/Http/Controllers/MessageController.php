@@ -36,6 +36,11 @@ class MessageController extends Controller
             }
         }
 
+        // $messages = $messages->map(function ($message,$key) {
+        //     $message->fecha = strtotime($message->created_at);
+        //     return $message;
+        // });
+        
         $messages = $messages->load('fromContact');
         
         return response()->json($messages,200);

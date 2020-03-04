@@ -230,6 +230,12 @@ opacity: 0;
     overflow-y: auto;
     position: relative;
 
+    .loadMessageSended{
+        position: fixed;
+        bottom: 90px;
+        right: 0;
+    }
+    
     &::-webkit-scrollbar {
         width: 5px;
     }
@@ -406,8 +412,12 @@ opacity: 0;
     flex-direction: column;
     justify-content: space-between;
     // background-color: #E0F5FE;
-    background: url('http://chatapp.kiribarren.top/uploads/pattern.png');
+    background: url('http://chatapp.keinher.com/uploads/pattern.jpg');
     
+    .bg-light-trans{
+        background-color: #00000052;
+    }
+
     p{
         margin: 0;
     }

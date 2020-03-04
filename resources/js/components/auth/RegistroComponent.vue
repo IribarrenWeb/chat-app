@@ -8,7 +8,7 @@
 
             <form class="login100-form validate-form" data-option="registro">
                 <div class="login100-form-title">
-                    <img class="p-2 rounded-circle shadow-sm  bg-light" src="uploads/chatapp.png" width="100" alt="brand">
+                    <img class="p-2 rounded-circle shadow-sm  bg-light" src="uploads/chatapp.jpg" width="100" alt="brand">
                     <span class="d-block mt-1">Registro</span>
                 </div>
 

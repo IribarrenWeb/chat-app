@@ -69,7 +69,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'phone_number' => $data['phone'],
-            'profile_img' => "uploads/default-" . rand(1,3) . '.png',
+            'profile_img' => "uploads/default-" . rand(1,3) . '.jpg',
             'password' => Hash::make($data['password']),
         ]);
     }

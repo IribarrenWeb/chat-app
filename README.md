@@ -1,17 +1,17 @@
-<p align="center"><img src="./imagenes/CHAT APP.png" width="300"></p>
+<p align="center"><img src="./imagenes/CHAT APP.png" width="200"></p>
 
 <p align="center">Chatapp with LARAVEL and VUEJS</p>
 
 <p align="center">
-<img src="./imagenes/1.jpg" width="200">
-<img src="./imagenes/2.jpg" width="200">
-<img src="./imagenes/3.jpg" width="200">
+    <img src="./imagenes/1.jpg" width="300">
+    <img src="./imagenes/2.jpg" width="300">
+    <img src="./imagenes/3.jpg" width="300">
 </p>
 
 ## About this project
 
 This chatapp was made for practice with the technologies like VueJS and Laravel, this is not a API REST, but is no reload web.
-
+git
 ## Principal features of this Chat aplication
 
 I implemented many features to this project to make more comlex for learning proposities. The features are listed in:

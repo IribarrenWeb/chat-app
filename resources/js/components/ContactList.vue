@@ -2,7 +2,13 @@
     <div id="contact-list" class="contact-list px-4 pt-2">
         <div class="head-contact-list d-flex mt-3">
             <div class="figure" @click="open()"> 
-                <img class="avatar" :src="user.profile_img" :alt="user.name + '-foto'">
+                <vue-load-image>
+                    <img slot="image" class="avatar" :src="user.profile_img" :alt="user.name + '-foto'">
+                    <div slot="preloader" class="spinner-border text-primary" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                    <div slot="error">error message</div>
+                </vue-load-image>
             </div>
             <div class="user-info">
                 <h2 class="font-weight-bolder h5">{{ user.name }}</h2>
@@ -40,6 +46,9 @@
 </template>
 
 <script>
+
+    import VueLoadImage from 'vue-load-image'
+
     export default {
         props: {
             contacts:{
@@ -93,6 +102,16 @@
                 return sort
 
             }
+        },
+        components: {
+            'vue-load-image': VueLoadImage
+        },
+        async mounted(){
+            this.$nextTick(() => {
+                this.$emit('isLoad',true);
+                console.log('mounted')
+            })
+
         }
     }
 </script>

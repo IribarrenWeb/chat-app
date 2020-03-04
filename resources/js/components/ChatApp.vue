@@ -4,12 +4,20 @@
 
         <transition name="fade" mode="out-in" appear>
             <keep-alive>
-                <ContactList v-if="option == false" :user="user" :contacts="contacts" @change="showNavi($event)"  @selected="startChat($event)"></ContactList>
-                <ConfigUser :url="url" @updateUser="user = $event" @updateImg="user.profile_img = $event" v-else :user="user"></ConfigUser>
+                <ContactList v-if="option == false" :user="user" :contacts="contacts" @change="showNavi($event)" @isLoad="loadSide = $event"  @selected="startChat($event)"></ContactList>
+                <ConfigUser v-else :url="url" @updateUser="user = $event" @updateImg="user.profile_img = $event" :user="user"></ConfigUser>
             </keep-alive>
         </transition>
 
-        <Conversation :url="url" :contact="selectedContact" :isRead="isRead" :messages="messages" @newMessage="pushNewMessage"></Conversation>
+        <Conversation   
+            :loadConver="loadConver" 
+            :url="url" 
+            :contact="selectedContact" 
+            :isRead="isRead" 
+            :messages="messages" 
+            @isLoad="loadConver = $event" 
+            @newMessage="pushNewMessage">
+        </Conversation>
     </div>
 </template>
 
@@ -31,7 +39,8 @@
                 audio: new Audio('http://chatapp.kiribarren.top/uploads/messenger.mp3'),
                 isActive: false,
                 option: false,
-                user: ''
+                user: '',
+                loadConver: false
             }
         },
        async mounted() {
@@ -57,18 +66,22 @@
             ContactList,
             NavigationMenu,
             ConfigUser,
-            VTitle
+            VTitle,
         },
         methods: {
             async startChat(contact){
                 
                 this.updateReadMessage(contact,true)
-
+                this.loadConver = false
                 await axios.get(`${this.url}/conversation/${contact.id}`)
                     .then((response) => {
                         this.messages = response.data
                         this.selectedContact = contact
                     })
+
+                setTimeout(() => {
+                    this.loadConver = true
+                }, 1000);
                 
             },
             async getUser(){

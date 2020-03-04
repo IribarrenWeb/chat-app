@@ -27,6 +27,7 @@
     "laravel-echo": "^1.6.1",
     "pusher-js": "^5.0.3",
     "v-title": "^1.0.7",
+    "vue-load-image": "^0.1.9",
     "vue-toastify": "^1.5.2"
   },
   "name": "proyecto-chat-app",

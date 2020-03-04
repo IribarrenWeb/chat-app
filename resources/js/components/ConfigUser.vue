@@ -4,6 +4,7 @@
             <div class="figure mb-3" @click="open()"> 
                 <img class="avatar avatar-head" :src="user.profile_img" :alt="user.name + '-foto'">
             </div>
+            
             <div class="user-info">
                 <h2 class="font-weight-bold h5">{{ user.name }}</h2>
                 <p>{{user.phone_number}}</p>
@@ -134,15 +135,19 @@ export default {
             if (!this.avatar.includes('default')) {
                 data.append('option',true)
             }
-            axios.post(`${this.url}/upload`,data).then( res => {
+            axios.post(`${this.url}/upload`,data)
+            .then( res => {
                 this.isLoading = false
                 if (res.data.status) {
                     this.$emit('updateImg',this.avatar)
                     this.$vToastify.success("Imagen actualizada");
                     this.cancel(true)
                 }else{
-                    this.$vToastify.error("nou");
+                    this.$vToastify.error("Error en la carga de la imagen.");
                 }
+            })
+            .then(e => {
+                this.$vToastify.error("Error en el servidor.");
             })
         },
         cancel(op = false, e){
@@ -172,7 +177,8 @@ export default {
 
             if (!t.data.validate && t.isChanged) {
                 t.isLoadingUpdate = true
-                axios.post(`${this.url}/update`,data).then( (response) => {
+                axios.post(`${this.url}/update`,data)
+                .then( (response) => {
                     t.isLoadingUpdate = false
                     if (response.data.status) {
                         this.$vToastify.success("Datos actualizados");
@@ -186,9 +192,11 @@ export default {
                                 }
                             })
                         }
-                        this.$vToastify.error("Oh no se pudo actualizar");
+                        this.$vToastify.error("No se pudo actualizar. Error en los datos");
                     }
-
+                })
+                .then( e => {
+                    this.$vToastify.error("Error en el servidor.");
                 })
             }
 

@@ -9,7 +9,7 @@
                 <p v-if="contact">{{contact.phone_number}}</p>
             </div>
         </div>
-        <MessagesFeed :messages="messages" :isRead="isRead" :contact="contact"></MessagesFeed>
+        <MessagesFeed @isLoad="changeLoad($event)" :sendedMessage="sendedMessage" :loadConver="loadConver" :messages="messages" :isRead="isRead" :contact="contact"></MessagesFeed>
         <SendMessage v-if="contact" @send="sendMessage($event)"></SendMessage>
     </div>
 </template>
@@ -34,20 +34,31 @@
             url:{
                 type: String,
                 required: true
+            },
+            loadConver: {
+                type: Boolean
+            }
+        },
+        data() {
+            return {
+                sendedMessage: false
             }
         },
         methods: {
             sendMessage(text) {
                 let curDate = Date()
-
-                console.log(curDate)
+                this.sendedMessage = true
                 axios.post(`${this.url}/send`,{
                         message: text,
                         date: curDate,
                         contactId: this.contact.id
                     }).then((response) => {
+                        this.sendedMessage = false
                         this.$emit('newMessage',response.data)
                     })
+            },
+            changeLoad(e){
+                this.$emit('isLoad',e)
             }
         },
         components: {
